@@ -1,8 +1,10 @@
 # HTTP protocol for AI chat apps (Version 2024-01-28)
 
-We are standardizing on a common HTTP protocol across AI chat app solutions and tools,
-to make them more compatible with each other. By agreeing on a common protocol, developers
-can swap different components, like using the Python backend [azure-search-openai-demo](https://github.com/Azure-Samples/azure-search-openai-demo)
+## Rationale
+The Chat Protocol for AI applications featuring chat-like solutions and tools, is an effort to standarize API contracts across solutions and languages,
+to make them compatible and interoperable. 
+
+By agreeing on a common protocol, developers can swap components. For example, using the Python backend [azure-search-openai-demo](https://github.com/Azure-Samples/azure-search-openai-demo)
 with the Web Components frontend from [azure-search-openai-javascript](https://github.com/Azure-Samples/azure-search-openai-javascript).
 
 This protocol is inspired by the [OpenAI ChatCompletion API](https://platform.openai.com/docs/guides/text-generation/chat-completions-api),
@@ -22,21 +24,22 @@ Table of contents:
     * [Answer formatting](#answer-formatting)
     * [Recommended response context](#recommended-response-context)
 
-## HTTP requests to AI chat app endpoints
+## HTTP requests to the AI chat app endpoints
 
 An HTTP request should always be a POST request, with the following headers:
 
 * `Content-Type: application/json`
 * `Authorization: Bearer <ID token>`: _Optional._ For applications that require authentication.
 
-The body of the request can contain these properties, in JSON:
+The body of the request can contain these properties, in JSON format:
 
 * `"messages"`: A list of messages, each containing "content" and "role", where "role" may be "assistant" or "user". A single-turn chat app may only contain 1 message, while a multi-turn chat app may contain multiple messages.
 * `"stream"`: A boolean indicating whether the response should be streamed or not.
 * `"context"`: _Optional_. An object containing any additional context about the request, such as the temperature to use for the LLM. Each application may define its own context properties. See [recommended request context properties](#request-context).
 * `"session_state"`: _Optional._ An object containing the "memory" for the chat app, such as a user ID.
 
-Here's an example JSON request:
+### Usage example
+The example belows represents a valid and compliant request body to the chat app endpoints:
 
 ```json
 {
@@ -70,7 +73,7 @@ The request context object can contain any properties. However, here are some re
     * `"gpt4v_input"`: The input type to use for a GPT-4V approach. Can be "text", "textAndImages", or "images".
 
 
-Example:
+Example of the overrides object:
 
 ```json
 "overrides": {
@@ -90,13 +93,13 @@ Example:
 
 ## HTTP responses from RAG chat app endpoints
 
-The HTTP response should either be JSON for a non-streaming response, or newline-delimited JSON ("NDJSON"/"jsonlines") for a streaming response.
+The HTTP response should either be JSON for a non-streaming response, or [newline-delimited JSON](https://ndjson.org/home/) ("NDJSON"/"jsonlines") for a streaming response.
 
 ### Non-streaming response
 
-This response is based off the
+This response format is based off the
 [OpenAI chat completion object](https://platform.openai.com/docs/api-reference/chat/object),
-with additional properties needed to display sources and citations properly.
+with additional properties needed to properly display sources and citations.
 
 The response should contain this header:
 
@@ -293,9 +296,9 @@ Here's an example JSON response for a 400-level error:
 
 ### Streaming response
 
-This response is based off the
+This response format is based off the
 [OpenAI chat completion chunk object](https://platform.openai.com/docs/api-reference/chat/streaming),
-with additional properties needed to display sources and citations properly.
+with additional properties needed to properly display sources and citations.
 
 The response should contain these headers:
 
@@ -624,7 +627,7 @@ The response context object can contain any properties. However, here are some r
     ]
     ```
 
-    If a client receives this property, the client should display the thoughts in a debug display. [See image](images/thoughts.png)
+    If a client receives this property, the client should display the thoughts in a debug display or to the end-user as specified by the design system. [See image](images/thoughts.png)
 
 ## Sample applications
 
