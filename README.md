@@ -42,15 +42,16 @@ The body of the request can contain these properties, in JSON format:
 The example belows represents a valid and compliant request body to the chat app endpoints:
 
 ```json
- "messages": [
-     {
-         "content": "What is included in my Northwind Health Plus plan that is not in standard?",
-         "role": "user"
-     }
- ],
- "stream": false,
- "context": {},
- "session_state": null
+{
+    "messages": [
+        {
+            "content": "What is included in my Northwind Health Plus plan that is not in standard?",
+            "role": "user"
+        }
+    ],
+    "stream": false,
+    "context": {},
+    "session_state": null
 }
 ```
 
