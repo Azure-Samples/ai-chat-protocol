@@ -39,14 +39,9 @@ The body of the request can contain these properties, in JSON format:
 * `"session_state"`: _Optional._ An object containing the "memory" for the chat app, such as a user ID.
 
 ### Usage example
-The example belows represents a valid and compliant request to the chat app endpoints:
+The example belows represents a valid and compliant request body to the chat app endpoints:
 
 ```json
-method: POST,
-headers: {
-'Content-Type': 'application/json',
-},
-body: {
  "messages": [
      {
          "content": "What is included in my Northwind Health Plus plan that is not in standard?",
