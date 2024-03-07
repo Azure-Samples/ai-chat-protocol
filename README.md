@@ -114,7 +114,7 @@ A successful response should have a status code of 200, and the body should cont
    * `"finish_reason"`: A string representing the finish state of the response. _Comes from the OpenAI response._
    * `"index"`: A number indicating which response this is (0 in the case of 1 response given). _Comes from the OpenAI response._
    * `"content_filter_results"`: An object from the Azure Content Safety filter. _Same as the OpenAI response, but will only be returned when using Azure OpenAI, not openai.com OpenAI._
-   * `"context"`: _Optional_. An object containing additional details needed for the chat app. Each application can define its own properties. See [recommended response context properties](#recommended-esponse-context).
+   * `"context"`: _Optional_. An object containing additional details needed for the chat app. Each application can define its own properties. See [recommended response context properties](#recommended-response-context).
    * `"session_state"`: _Optional_. An object containing the "memory" for the chat app, such as a user ID. 
 * `"created"`: The Unix timestamp (in seconds) of when the chat completion was created. _Comes from the OpenAI response._
 * `"id"`: A unique identifier for the chat completion. _Comes from the OpenAI response._
