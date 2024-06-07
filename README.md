@@ -1,3 +1,7 @@
+> [!IMPORTANT]  
+> This protocol is now housed in the [Microsoft AI Chat Protocol project](https://github.com/microsoft/ai-chat-protocol/tree/main/spec#readme). Please update your links and file issues there.
+
+
 # HTTP protocol for AI chat apps (Version 2024-05-29)
 
 ## Rationale
